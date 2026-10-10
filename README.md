@@ -13,6 +13,7 @@ Grex is a React-based web application for managing student and course informatio
 
 ## Project Folder Structure
 
+```
 Grex/
 ├── index.html
 ├── package.json
@@ -35,7 +36,7 @@ Grex/
     │   └── CourseDetails.jsx
     └── styles/
         └── style.css
-
+```
 
 ## Technologies Used
 
