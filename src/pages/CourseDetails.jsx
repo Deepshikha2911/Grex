@@ -1,0 +1,8 @@
+import { Link, useParams } from 'react-router-dom'
+import { ArrowLeft, BookOpen, Users, GraduationCap } from 'lucide-react'
+export default function CourseDetails({ courses, students }) {
+    const { id } = useParams(); const course = courses.find(c => c.id === id)
+    if (!course) return <div className="page"><Link to="/courses" className="back-link"><ArrowLeft size={16} /> Back to courses</Link><section className="panel empty-state"><strong>Course not found</strong><span>This course may have been removed.</span></section></div>
+    const enrolled = students.filter(s => s.course === course.name || s.course === course.id || s.course === course.program)
+    return <div className="page"><Link to="/courses" className="back-link"><ArrowLeft size={16} /> Back to courses</Link><div className="course-detail-hero"><span className="course-icon large"><BookOpen size={30} /></span><span className="course-code">{course.id}</span><h1>{course.name}</h1><p>{course.description}</p></div><div className="stats-grid detail-stats"><article className="stat-card"><div className="stat-icon teal"><GraduationCap /></div><p>Faculty</p><div className="detail-stat-text">{course.faculty}</div></article><article className="stat-card"><div className="stat-icon sand"><BookOpen /></div><p>Course credits</p><div className="stat-value">{course.credits}</div></article><article className="stat-card"><div className="stat-icon lavender"><Users /></div><p>Enrolled students</p><div className="stat-value">{course.enrolled}</div></article></div><section className="panel"><h2>Course information</h2><p className="body-copy">This course is part of the Grex sample catalogue. Faculty, credit and enrollment details can be maintained through the Course Management page.</p></section></div>
+}

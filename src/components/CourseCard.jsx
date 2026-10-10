@@ -1,0 +1,5 @@
+import { BookOpen, Users, ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
+export default function CourseCard({ course, onDelete }) {
+  return <article className="course-card"><div className="course-card-top"><span className="course-icon"><BookOpen size={21} /></span><span className="course-code">{course.id}</span></div><h3>{course.name}</h3><p>{course.description}</p><div className="course-meta"><span><Users size={15} />{course.enrolled} students</span><span>{course.credits} credits</span></div><div className="course-footer"><span>Faculty <strong>{course.faculty}</strong></span><div><Link className="icon-button" to={`/courses/${course.id}`} aria-label="Course details"><ArrowUpRight size={16} /></Link><button className="text-button danger-text" onClick={() => onDelete(course.id)}>Delete</button></div></div></article>
+}

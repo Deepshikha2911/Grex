@@ -1,0 +1,18 @@
+import { useMemo, useState } from 'react'
+import { Plus, Search, BookOpen, X } from 'lucide-react'
+import CourseCard from '../components/CourseCard'
+import { Link } from 'react-router-dom'
+const blank = { id: '', name: '', faculty: '', credits: 3, enrolled: 0, description: '' }
+export default function Courses({ courses, setCourses }) {
+  const [search, setSearch] = useState(''); const [show, setShow] = useState(false); const [form, setForm] = useState(blank)
+  const filtered = useMemo(() => courses.filter(c => `${c.id} ${c.name} ${c.faculty}`.toLowerCase().includes(search.toLowerCase())), [courses, search])
+  const update = e => setForm({ ...form, [e.target.name]: e.target.value })
+  const save = e => { e.preventDefault(); if (courses.some(c => c.id.toLowerCase() === form.id.trim().toLowerCase())) { alert('Course code already exists.'); return } setCourses(old => [...old, { ...form, id: form.id.trim().toUpperCase(), credits: Number(form.credits), enrolled: Number(form.enrolled) }]); setForm(blank); setShow(false) }
+  const remove = id => { if (window.confirm('Delete this course?')) setCourses(old => old.filter(c => c.id !== id)) }
+  return <div className="page"><div className="page-title-row"><div><span className="eyebrow">ACADEMIC CATALOGUE</span><h1>Course management</h1><p>Manage your course catalogue, faculty and credit information.</p></div><button className="button primary" onClick={() => setShow(true)}><Plus size={17} /> Add course</button></div>
+    <div className="course-summary"><div className="course-summary-icon"><BookOpen /></div><div><strong>{courses.length} courses</strong><span>Available in the academic catalogue</span></div><label className="search-box"><Search size={17} /><input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search courses…" /></label></div>
+    <div className="course-grid">{filtered.map(c => <CourseCard key={c.id} course={c} onDelete={remove} />)}</div>{filtered.length === 0 && <div className="panel empty-state"><strong>No matching courses</strong><span>Try another keyword.</span></div>}
+    {show && <div className="modal-backdrop" onMouseDown={e => { if (e.target === e.currentTarget) setShow(false) }}><section className="modal"><div className="modal-heading"><div><span className="eyebrow">NEW COURSE</span><h2>Add a course</h2><p>Enter the course details for the catalogue.</p></div><button className="icon-button" onClick={() => setShow(false)}><X size={18} /></button></div><form className="student-form" onSubmit={save}><div className="form-grid"><label>Course code<input name="id" value={form.id} onChange={update} placeholder="e.g. BCS105" required /></label><label>Course name<input name="name" value={form.name} onChange={update} placeholder="Course title" required /></label><label>Faculty name<input name="faculty" value={form.faculty} onChange={update} placeholder="e.g. Dr. R. Shah" required /></label><label>Credits<input name="credits" type="number" min="1" max="10" value={form.credits} onChange={update} required /></label><label>Enrolled students<input name="enrolled" type="number" min="0" value={form.enrolled} onChange={update} required /></label><label className="full-width">Description<textarea name="description" value={form.description} onChange={update} placeholder="Briefly describe the course" rows="3" required /></label></div><div className="form-actions"><button type="button" className="button secondary" onClick={() => setShow(false)}>Cancel</button><button className="button primary">Save course</button></div></form></section></div>}
+    <footer className="page-footer">Grex <span>Course catalogue · Sample academic data.</span></footer>
+  </div>
+}

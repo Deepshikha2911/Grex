@@ -1,0 +1,12 @@
+import { Link, useParams } from 'react-router-dom'
+import { ArrowLeft, Mail, GraduationCap, CalendarDays, BookOpen } from 'lucide-react'
+import { attendanceStatus } from '../data'
+export default function StudentDetails({ students }) {
+  const { id } = useParams(); const student = students.find(s => String(s.id) === id)
+  if (!student) return <div className="page"><Link to="/students" className="back-link"><ArrowLeft size={16} /> Back to students</Link><section className="panel empty-state"><strong>Student not found</strong><span>This record may have been removed.</span></section></div>
+  const status = attendanceStatus(Number(student.attendance))
+  return <div className="page"><Link to="/students" className="back-link"><ArrowLeft size={16} /> Back to students</Link><div className="detail-hero"><span className="profile-avatar">{student.name.split(' ').map(n => n[0]).slice(0, 2).join('')}</span><div><span className="eyebrow">STUDENT PROFILE</span><h1>{student.name}</h1><p>Enrollment #{student.id} · {student.course}</p></div><span className={`status ${status.toLowerCase()}`}>{status}</span></div>
+    <div className="detail-grid"><section className="panel"><h2>Personal & academic details</h2><div className="detail-list"><div><Mail /><span><small>Email address</small><strong>{student.email}</strong></span></div><div><GraduationCap /><span><small>Program</small><strong>{student.course}</strong></span></div><div><CalendarDays /><span><small>Current semester</small><strong>Semester {student.semester}</strong></span></div><div><BookOpen /><span><small>Gender</small><strong>{student.gender}</strong></span></div></div></section>
+      <section className="panel"><h2>Attendance overview</h2><div className="attendance-number">{student.attendance}<small>%</small></div><div className="large-progress"><span style={{ width: `${student.attendance}%` }} /></div><span className={`status ${status.toLowerCase()}`}>{status}</span><p className="helper-note">Eligibility: 75% and above. Warning: 60–74%. Detained: below 60%.</p></section>
+      <section className="panel subject-panel"><h2>Subject performance</h2>{Object.entries(student.subjects || {}).map(([name, score]) => <div className="subject-row" key={name}><span>{name}</span><div className="progress"><span style={{ width: `${score}%` }} /></div><strong>{score}%</strong></div>)}</section></div></div>
+}
