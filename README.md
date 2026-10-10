@@ -1,26 +1,52 @@
-# Grex — AWT Practical Assignment
+# Grex — Student and Course Management System
 
-A responsive React college course and student management system in a teal and beige theme.
-
-## Run the project
-1. Install Node.js LTS if it is not already installed.
-2. Extract this ZIP file.
-3. Open the extracted `Grex_AWT_Project` folder in VS Code.
-4. Open Terminal > New Terminal.
-5. Run `npm install`
-6. Run `npm run dev`
-7. Open the local URL printed by Vite (usually http://localhost:5173).
+Grex is a React-based web application for managing student and course information through a simple interface.
 
 ## Features
-- Dashboard statistics and recent students
-- Add, edit, delete, search and filter student records
-- Student profile pages with subjects and attendance
-- Add, delete, search and view courses
-- React Router routes for dashboard, students, student details, courses and course details
-- Conditional attendance status: 75%+ Eligible, 60–74% Warning, below 60% Detained
-- Reusable components, array rendering, props, controlled forms, event handlers
-- `useMemo` for filtered lists and `React.memo` for student rows
-- Responsive CSS and accessible labels
 
-## Important note
-This is a front-end practical demo. Records are held in React state and reset when the page is refreshed. A database/backend is not included because it is not required in the supplied assignment brief.
+- Dashboard for viewing student and course information
+- Add, edit, and delete student records
+- Add and delete courses
+- View student and course details
+- Store changes in the browser using localStorage
+- Responsive interface built with React and CSS
+
+## Technologies Used
+
+- React
+- JavaScript
+- Vite
+- CSS
+- Browser localStorage
+
+## Getting Started
+
+### Prerequisites
+
+Install Node.js and npm.
+
+### Installation
+
+1. Clone or download this repository.
+2. Open the project folder in a terminal.
+3. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local URL shown in the terminal.
+
+## Data Storage
+
+Student and course changes are saved in the browser's localStorage. Data persists across refreshes in the same browser, but it is not shared between different users or devices.
+
+## Project Purpose
+
+Developed as an academic project to practice React, component-based development, state management, and browser-side data persistence.
