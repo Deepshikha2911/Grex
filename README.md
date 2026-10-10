@@ -11,6 +11,32 @@ Grex is a React-based web application for managing student and course informatio
 - Store changes in the browser using localStorage
 - Responsive interface built with React and CSS
 
+## Project Folder Structure
+
+Grex/
+├── index.html
+├── package.json
+├── vite.config.js
+└── src/
+    ├── main.jsx
+    ├── App.jsx
+    ├── data.js
+    ├── components/
+    │   ├── Navbar.jsx
+    │   ├── DashboardCard.jsx
+    │   ├── StudentCard.jsx
+    │   ├── StudentForm.jsx
+    │   └── CourseCard.jsx
+    ├── pages/
+    │   ├── Dashboard.jsx
+    │   ├── Students.jsx
+    │   ├── StudentDetails.jsx
+    │   ├── Courses.jsx
+    │   └── CourseDetails.jsx
+    └── styles/
+        └── style.css
+
+
 ## Technologies Used
 
 - React
