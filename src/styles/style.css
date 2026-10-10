@@ -553,6 +553,11 @@ a {
     background: #368575
 }
 
+.detail-grid .large-progress + .status {
+    display: inline-block;
+    margin-top: 8px
+}
+
 .legend {
     display: grid;
     grid-template-columns: 1fr 1fr;
