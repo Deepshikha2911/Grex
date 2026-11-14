@@ -76,4 +76,4 @@ Student and course changes are saved in the browser's localStorage. Data persist
 
 ## Project Purpose
 
-Developed as an academic project to practice React, component-based development, state management.
+Developed as an academic project to practice React, component-based development, and state management.
